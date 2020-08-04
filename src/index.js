@@ -62,7 +62,7 @@ io.on('connection', (socket) => {
 
 
     socket.on('disconnect', () => {
-        const user = removeUser(socket.id);
+        const user =  removeUser(socket.id);
 
         if(user){
             io.to(user.room).emit('message', generateMessage('Volunteers!!', `${user.username} has left the chat`));
@@ -77,17 +77,15 @@ io.on('connection', (socket) => {
 var date = new Date();
 day=date.toLocaleString(undefined, {
     weekday: 'long'
-    // year: 'numeric',
-    // month: 'long',
-    // day: 'numeric'
+    
   })
 
-console.log(day)
+//console.log(day)
 
 let date_ob = new Date();
 
 let hours = date_ob.getHours();
-console.log(hours)
+//console.log(hours)
 
 server.listen(port, () => {
     console.log(`Listening on port ${port}`);

@@ -7,7 +7,7 @@ const generateMessage = (username, text) => {
 }
 
 const generateLocationMessage = (username, url) => {
-    console.log(url)
+    
     
     return {
         username,

@@ -89,7 +89,8 @@ $messageForm.addEventListener('submit', (e) => {
 });
 
 $("#send-location").addEventListener('click', () => {
-    $sendLocationButton.setAttribute('disabled', 'disabled');
+    setTimeout(
+    $sendLocationButton.setAttribute('disabled', 'disabled'),2000);
    
 
         socket.emit('sendLocation', {
@@ -97,21 +98,22 @@ $("#send-location").addEventListener('click', () => {
             longitude: 4,
             
         }, () => {
-            $sendLocationButton.removeAttribute('disabled');
-            console.log('Location shared');
-        });
+           setTimeout( $sendLocationButton.removeAttribute('disabled'),2000);
+            //console.log('Location shared');
+        })
 
     });
 
 
 $("#next-team").addEventListener('click',()=>{
-    $nextTeamButton.setAttribute('disabled','disabled');
+ 
+    setTimeout( $nextTeamButton.setAttribute('disabled','disabled'),2000);
     socket.emit('nextTeam',{
         hi:2,
 
     },() =>{
-        $nextTeamButton.removeAttribute('disabled');
-        console.log('Next team shown!')
+       setTimeout( $nextTeamButton.removeAttribute('disabled'),2000);
+        //console.log('Next team shown!')
     });
 });
 

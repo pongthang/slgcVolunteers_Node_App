@@ -89,9 +89,7 @@ Time=['6 am -9 am','9 am -12pm','12 pm-3 pm','3 pm-6 pm','6 pm-8 pm','8 pm- 10 p
 var date = new Date();
 dayName=date.toLocaleString(undefined, {
     weekday: 'long'
-    // year: 'numeric',
-    // month: 'long',
-    // day: 'numeric'
+   
   })
 
 
@@ -100,7 +98,7 @@ let hours = date.getHours();
 
 
 const getGroup = (hours,day)=>{
-    let reqXcordinate = 0;
+    let reqXcordinate =  0;
     let reqYcordinate = 0;
     days.forEach((value,index,array)=>{
         if (value === day){
@@ -108,17 +106,17 @@ const getGroup = (hours,day)=>{
         }
     })
     if(hours>=6 && hours <9 ){
-        reqYcordinate=0  
+        reqYcordinate= 0  
     }else if(hours>=9 && hours<12){
         reqYcordinate=1;
     }else if(hours>=12&& hours<15){
-        reqYcordinate=2; 
+        reqYcordinate= 2; 
     }else if(hours>=15 && hours<18){
-        reqYcordinate=3;
+        reqYcordinate= 3;
     }else if(hours>=18&& hours<20){
-        reqYcordinate=4; 
+        reqYcordinate= 4; 
     }else if(hours>=20&& hours<22){
-        reqYcordinate=5; 
+        reqYcordinate= 5; 
     }else return {noduty:'noduty'}
     return {reqXcordinate,reqYcordinate};
 }
@@ -129,14 +127,14 @@ const getGroup = (hours,day)=>{
 
 let day=getGroup(hours,dayName) // give the details coordinates of particular group.
 
-const getTeamVolunteers = ()=>{
+const getTeamVolunteers =  ()=>{
     
     
     if (Object.values(day)=='noduty'){
         return ['No Duty','None']
     }else{
     group = groupDistribution[day.reqXcordinate][day.reqYcordinate]
-    ObValues=Object.values( Teams[group])
+    ObValues=  Object.values( Teams[group])
     return [ObValues,group.toUpperCase()]}
 
 }
@@ -144,29 +142,28 @@ const getTeamVolunteers = ()=>{
 const getNextTeam = ()=>{
     if (hours>=22 && dayName === 'Saturday'){
         group = groupDistribution[0][0]
-        ObValues=Object.values( Teams[group])
+        ObValues=  Object.values( Teams[group])
         return [ObValues,group.toUpperCase()]
     } else if (hours<6) {
-        let day1=getGroup(6,dayName);
+        let day1= getGroup(6,dayName);
         group = groupDistribution[day1.reqXcordinate][0]
-        ObValues=Object.values( Teams[group])
+        ObValues= Object.values( Teams[group])
         return [ObValues,group.toUpperCase()]
 
     }else if (hours>=22 && dayName != 'Saturday'){
-        let day1=getGroup(6,dayName);
+        let day1= getGroup(6,dayName);
         group = groupDistribution[day1.reqXcordinate+1][0]
-        ObValues=Object.values( Teams[group])
+        ObValues=  Object.values( Teams[group])
         return [ObValues,group.toUpperCase()]
     }else{
-        let day1=getGroup(hours,dayName);
+        let day1= getGroup(hours,dayName);
         group = groupDistribution[day1.reqXcordinate][day1.reqYcordinate+1]
-        ObValues=Object.values( Teams[group])
+        ObValues= Object.values( Teams[group])
         return [ObValues,group.toUpperCase()]
 
     }
 
 }
-
 
 
 
