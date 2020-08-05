@@ -89,8 +89,9 @@ $messageForm.addEventListener('submit', (e) => {
 });
 
 $("#send-location").addEventListener('click', () => {
-    setTimeout(
-    $sendLocationButton.setAttribute('disabled', 'disabled'),2000);
+    navigator.geolocation.getCurrentPosition((position) => {
+        position=position;
+        setTimeout($sendLocationButton.setAttribute('disabled', 'disabled'),2000);
     
     var date = new Date();
     let dayName=date.toLocaleString(undefined, {
@@ -110,11 +111,13 @@ $("#send-location").addEventListener('click', () => {
         })
 
     });
+});
 
 
 $("#next-team").addEventListener('click',()=>{
-    
-    var date = new Date();
+    navigator.geolocation.getCurrentPosition((position) => {
+        position=position;
+        var date = new Date();
     let dayName=date.toLocaleString(undefined, {
         weekday: 'long'
    
@@ -130,6 +133,7 @@ $("#next-team").addEventListener('click',()=>{
        setTimeout( $nextTeamButton.removeAttribute('disabled'),2000);
         //console.log('Next team shown!')
     });
+});
 });
 
 socket.emit('join', { username, room }, (error) => {
