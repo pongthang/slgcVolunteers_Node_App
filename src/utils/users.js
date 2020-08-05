@@ -102,7 +102,7 @@ const addUser = ({id, username, room}) => {
         return { error: 'Username is in use!'};
     }
 
-    const user = { id, username, room };
+    const user = { id, username,room };
     users.push(user);
     return { user };
 }

@@ -48,15 +48,15 @@ io.on('connection', (socket) => {
         callback();
     });
 
-    socket.on('sendLocation', ({latitude, longitude}, callback) => {
+    socket.on('sendLocation', ({hours, dayName}, callback) => {
         const user = getUser(socket.id);
-        io.to(user.room).emit('locationMessage', generateLocationMessage(user.username, getTeamVolunteers()));
+        io.to(user.room).emit('locationMessage', generateLocationMessage(user.username, getTeamVolunteers(hours,dayName)));
         callback();
     });
 
-    socket.on('nextTeam', ({hi}, callback) => {
+    socket.on('nextTeam', ({hours,dayName}, callback) => {
         const user = getUser(socket.id);
-        io.to(user.room).emit('nextTeamMessage', generateLocationMessage(user.username, getNextTeam()));
+        io.to(user.room).emit('nextTeamMessage', generateLocationMessage(user.username, getNextTeam(hours,dayName)));
         callback();
     });
 
@@ -74,18 +74,18 @@ io.on('connection', (socket) => {
     });
 });
 
-var date = new Date();
-day=date.toLocaleString(undefined, {
-    weekday: 'long'
+// var date = new Date();
+// day=date.toLocaleString(undefined, {
+//     weekday: 'long'
     
-  })
+//   })
 
-//console.log(day)
+// //console.log(day)
 
-let date_ob = new Date();
+// let date_ob = new Date();
 
-let hours = date_ob.getHours();
-//console.log(hours)
+// let hours = date_ob.getHours();
+// //console.log(hours)
 
 server.listen(port, () => {
     console.log(`Listening on port ${port}`);

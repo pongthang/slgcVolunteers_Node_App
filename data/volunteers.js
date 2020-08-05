@@ -86,15 +86,15 @@ groupDistribution=[
 days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 Time=['6 am -9 am','9 am -12pm','12 pm-3 pm','3 pm-6 pm','6 pm-8 pm','8 pm- 10 pm']
 
-var date = new Date();
-dayName=date.toLocaleString(undefined, {
-    weekday: 'long'
+// var date = new Date();
+// dayName=date.toLocaleString(undefined, {
+//     weekday: 'long'
    
-  })
+//   })
 
 
 
-let hours = date.getHours();
+// let hours = date.getHours();
 
 
 const getGroup = (hours,day)=>{
@@ -125,10 +125,10 @@ const getGroup = (hours,day)=>{
 
 
 
-let day=getGroup(hours,dayName) // give the details coordinates of particular group.
+ // give the details coordinates of particular group.
 
-const getTeamVolunteers =  ()=>{
-    
+const getTeamVolunteers =  (hours,dayName)=>{
+    let day=getGroup(hours,dayName)
     
     if (Object.values(day)=='noduty'){
         return ['No Duty','None']
@@ -139,7 +139,7 @@ const getTeamVolunteers =  ()=>{
 
 }
 
-const getNextTeam = ()=>{
+const getNextTeam = (hours,dayName)=>{
     if (hours>=22 && dayName === 'Saturday'){
         group = groupDistribution[0][0]
         ObValues=  Object.values( Teams[group])

@@ -91,11 +91,18 @@ $messageForm.addEventListener('submit', (e) => {
 $("#send-location").addEventListener('click', () => {
     setTimeout(
     $sendLocationButton.setAttribute('disabled', 'disabled'),2000);
-   
+    
+    var date = new Date();
+    let dayName=date.toLocaleString(undefined, {
+        weekday: 'long'
+       
+      });    
+    
+    let hours = date.getHours();
 
         socket.emit('sendLocation', {
-            latitude: 2, 
-            longitude: 4,
+            hours: hours, 
+            dayName: dayName,
             
         }, () => {
            setTimeout( $sendLocationButton.removeAttribute('disabled'),2000);
@@ -106,10 +113,18 @@ $("#send-location").addEventListener('click', () => {
 
 
 $("#next-team").addEventListener('click',()=>{
- 
+    
+    var date = new Date();
+    let dayName=date.toLocaleString(undefined, {
+        weekday: 'long'
+   
+    })
+
+    let hours = date.getHours();
     setTimeout( $nextTeamButton.setAttribute('disabled','disabled'),2000);
     socket.emit('nextTeam',{
-        hi:2,
+        hours:hours,
+        dayName:dayName,
 
     },() =>{
        setTimeout( $nextTeamButton.removeAttribute('disabled'),2000);
